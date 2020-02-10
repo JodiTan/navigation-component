@@ -8,7 +8,7 @@
     "lint:fix": "eslint --fix src/",
     "build": "npm run clean && npm run build:dev && npm run build:prod",
     "build:dev": "webpack --env=development --progress --profile --colors --display-optimization-bailout --bail",
-    "build:prod": "./node_modules/.bin/webpack --env=production --progress --profile --colors --display-optimization-bailout",
+    "build:prod": ".\\node_modules\\.bin\\webpack --env=production --progress --profile --colors --display-optimization-bailout",
     "clean": "rimraf dist"
   },
   "devDependencies": {

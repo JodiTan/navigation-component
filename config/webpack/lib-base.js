@@ -33,6 +33,10 @@ const webpack = require('webpack')
  */
 module.exports = function configFactory (ops) {
   return {
+    watch: true,
+    optimization: {
+      minimize: false
+    },
     context: ops.context,
     entry: ops.entry,
     externals: [

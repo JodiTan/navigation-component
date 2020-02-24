@@ -33,10 +33,10 @@ const webpack = require('webpack')
  */
 module.exports = function configFactory (ops) {
   return {
-    watch: true,
     optimization: {
       minimize: false
     },
+    watch: true,
     context: ops.context,
     entry: ops.entry,
     externals: [
@@ -91,43 +91,24 @@ module.exports = function configFactory (ops) {
          * with such configuration it just rewrites those URLs to point to
          * the original location of the fonts assets in
          * the library being build. */
-        test: /\.(ttf|eot|svg)$/,
+        test: /\.(ttf|eot|woff|woff2|svg)$/,
         include: [
           /src[/\\]assets[/\\]fonts/
         ],
-        loader: 'file-loader',
-        options: {
-          name: './[name].[ext]',
-          outputPath: 'fonts/'
-        }
+        loader: 'url-loader'
       },
       {
         test: /\.(svg)$/,
         include: [
           /src[/\\]assets[/\\]images/
         ],
-        loader: 'file-loader',
-        options: {
-          name: './[name].[ext]',
-          outputPath: 'images/'
-        }
+        loader: 'url-loader'
       },
       {
         // Match woff2 in addition to patterns like .woff?v=1.1.1.
         test: /\.(woff|woff2)$/,
         use: {
-          loader: 'url-loader',
-          options: {
-            // Limit at 20k. Above that it emits separate files
-            limit: 20000,
-
-            // url-loader sets mimetype if it's passed.
-            // Without this it derives it from the file extension
-            mimetype: 'application/font-woff',
-
-            // Output below fonts directory
-            name: 'fonts/[name].[ext]'
-          }
+            loader: 'url-loader'
         }
       },
       {
@@ -142,21 +123,6 @@ module.exports = function configFactory (ops) {
           babelrc: false,
           envName: ops.babelEnv,
           presets: ['topcoder-react-utils/config/babel/webpack']
-        }
-      },
-      {
-        test: /\.svg$/,
-        include: [
-          /src[/\\]assets[/\\]images/
-        ],
-        use: {
-          loader: 'url-loader',
-          options: {
-            // Limit at 20k. Above that it emits separate files
-            limit: 20000,
-            mimetype: 'image/svg',
-            name: 'images/[name].[ext]'
-          }
         }
       },
       {

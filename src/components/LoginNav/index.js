@@ -36,6 +36,13 @@ const LoginNav = ({
   }
 
   const renderLoginPanel = () => {
+    if (notifications && notifications.length) {
+      notificationButtonState = 'new';
+    }
+    else {
+      notificationButtonState = 'none';
+    }
+
     if (showNotification) {
       return ([
         <NotificationButton

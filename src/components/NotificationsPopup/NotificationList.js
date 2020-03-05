@@ -49,12 +49,15 @@ const Item = ({ item, onDismiss }) => (
         <span className={styles['time-txt']}>{moment(item.timestamp).fromNow()}</span>
       </div>
       <div className={cn(styles['right-remove'], styles.dismissItem)} onClick={onDismiss}>
-        <div className={styles['btn-close']} />
-        <span className={styles['black-txt']}>Dismiss notification</span>
+        <span className={styles['btn-mark-as-read']}></span>
+        <span className={styles['black-txt']}>Mark as Read</span>
+        
       </div>
     </a>
   </div>
 )
+//  <div className={styles['btn-close']} />
+//  <span className={styles['black-txt']}>Dismiss notification</span>
 
 Item.propTypes = {
   item: PropTypes.object,
